@@ -2,10 +2,11 @@
 Grabs the entire Federal Deposit Insurance Corporation (FDIC) Statistics on 
 Depository Institutions (SDI) data set.
 
+Note that this is a large data set! There are roughly 85 zip files each of which
+is between 40 and 84 MB.
+
 """
 # built-in Python libraries
-import os, StringIO, zipfile
-
 import pandas as pd
 import requests
 
@@ -16,18 +17,16 @@ present = '20131231'
 datetimes = pd.date_range('19921231', end=present, freq='Q')
 dates = datetimes.format(formatter=lambda t: t.strftime('%Y%m%d'))
 
-# construct the url...
-tmp_date = dates[0]
-tmp_url = base_url + tmp_date + '.zip'
+for date in dates:
+    
+    # ...construct the url...
+    tmp_url = base_url + date + '.zip'
+    
+    # ...make the connection and grab the zipped files...
+    tmp_buffer = requests.get(tmp_url)
 
-# ...make the connection and grab the zipped files...
-tmp_buffer = requests.get(tmp_url)
-
-# ...unzip the files...
-tmp_zipped_files = StringIO.StringIO(tmp_buffer.content)
-tmp_unzipped_files = zipfile.ZipFile(tmp_zipped_files)
-
-# ...and finally extract results!
-tmp_dir = 'All_Reports_' + tmp_date
-os.mkdir(tmp_dir)
-tmp_unzipped_files.extractall(path=tmp_dir)
+    # ...save them to disk...
+    with open('All_Reports_' + date + '.zip', 'wb') as tmp_zip_file:
+        tmp_zip_file.write(tmp_buffer.content)    
+    
+    print('Done with files for ' + date + '!')
