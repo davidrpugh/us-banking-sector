@@ -41,7 +41,7 @@ for zip_file in zip_files:
                                 dtype=used_dtypes,
                                 parse_dates=True,
                                 )
-                                                             
+                                                     
     dataframes.append(tmp_dataframe)
     
     print('Done with ' + zip_file + '!')
