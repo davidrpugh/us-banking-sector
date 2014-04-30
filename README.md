@@ -1,4 +1,4 @@
-# Characterizing the size distribution of U.S. banks
+# The size distribution of U.S. banks
 
 Python code for replicating the statistical analysis from my paper on the evolution of the U.S. bank size distribution.
 
