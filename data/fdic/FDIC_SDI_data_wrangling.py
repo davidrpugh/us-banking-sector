@@ -6,6 +6,9 @@ There are on the order of 50 corrupted observations in the various zip files.
 Not clear why there are 90 entries in those rows instead of 89
 
 """
+__author__ = 'David R. Pugh'
+__license__ = 'BSD'
+
 # built-in Python libraries
 from datetime import datetime
 import glob, zipfile

@@ -6,7 +6,9 @@ Note that this is a large data set! There are roughly 85 zip files each of which
 is between 40 and 84 MB.
 
 """
-# built-in Python libraries
+__author__ = 'David R. Pugh'
+__license__ = 'BSD'
+
 import pandas as pd
 import requests
 
