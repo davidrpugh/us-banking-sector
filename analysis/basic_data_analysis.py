@@ -1,5 +1,8 @@
 import pandas as pd
 
+# load the pickled data
+FDIC_SDI_panel = pd.read_pickle('../data/FDIC_SDI_panel_nominal.pkl')
+
 # compute the by quarter totals for each measure
 totals = FDIC_SDI_panel.sum()
 
