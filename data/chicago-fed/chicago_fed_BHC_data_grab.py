@@ -18,7 +18,8 @@ for year in range(1987, 2015):
         tmp_buffer = requests.get(url=base_url, params=tmp_query)
         
         # ...save them to disk...
-        with open(('BHCD_{yr}Q{qtr}.zip').format(yr=year, qtr=quarter), 'wb') as tmp_zip_file:
+        tmp_zip_file_name = ('BHCD_{yr}Q{qtr}.zip').format(yr=year, qtr=quarter)
+        with open(tmp_zip_file_name, 'wb') as tmp_zip_file:
             tmp_zip_file.write(tmp_buffer.content)    
     
     print('Done with files for ' + str(year) + '!')
