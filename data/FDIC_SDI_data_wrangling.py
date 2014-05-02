@@ -49,8 +49,14 @@ for zip_file in zip_files:
 # concatenate the quarterly dataframes into a single data frame
 combined_dataframe = pd.concat(dataframes)
 
+# convert units from thousands to billions of USD
+combined_dataframe[['asset', 'lnlsnet', 'liab', 'dep', 'eqtot']] /= 1e6           
+
+# convert units from nummber of people to thousands of people
+combined_dataframe['numemp'] /= 1e3 
+
 # convert to panel (major_axis: cert, minor_axis: repdte)
 combined_panel = combined_dataframe.to_panel()
 
 # pickle the object for later use!
-combined_panel.to_pickle('FDIC_SDI_panel.pkl')
+combined_panel.to_pickle('FDIC_SDI_panel_nominal.pkl')
